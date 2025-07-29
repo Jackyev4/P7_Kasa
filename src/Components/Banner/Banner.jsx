@@ -7,7 +7,7 @@ function Banner({ imageUrl, text }) { // Création du composant Banner
       className="banner" // Classe CSS pour le style général.
       style={{ backgroundImage: `url(${imageUrl})` }} // Définit l'image de fond via les styles en ligne.
     >
-      {text && <h1 className="banner-text">{text}</h1>} {/* Affiche le titre h1*/}
+      {<h1 className="banner-text">{text}</h1>} {/* Affiche le titre h1*/}
     </div>
   );
 }

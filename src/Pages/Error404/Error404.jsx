@@ -4,6 +4,8 @@
 
 function Error404() {
 
+
+ // RENDU DU COMPOSANT
   return (
  <main className="error-page-container"> {/* Ajout du style + texte */}
       <h1 className="error-code">404</h1>

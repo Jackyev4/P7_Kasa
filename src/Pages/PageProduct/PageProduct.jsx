@@ -11,6 +11,9 @@ import starInactive from '../../Images/star-empty.svg'; // Importe l'image SVG d
 import './PageProduct.css'; // Importe le fichier CSS spécifique à cette page.
 
 function PageProduct() { // Définit le composant de la page de produit (détail du logement).
+
+    // RÉCUPÉRATION DES DONNÉES ET GESTION DES ERREURS
+
   const { id } = useParams(); // Récupère l'ID du logement depuis l'URL (ex: "/logement/abc").
   const navigate = useNavigate(); // Initialise la fonction de navigation.
 
@@ -25,6 +28,8 @@ function PageProduct() { // Définit le composant de la page de produit (détail
   if (!logement) { // Si le logement n'a pas été trouvé (et la redirection est en cours).
     return null; // Le composant ne rend rien pour le moment.
   }
+
+  // NOTATION AVEC ETOILES
 
   const renderStars = (rating) => { // Définit une fonction pour générer les étoiles en fonction d'une note.
     const stars = []; // Crée un tableau vide pour stocker les éléments étoile.
@@ -41,14 +46,20 @@ function PageProduct() { // Définit le composant de la page de produit (détail
     return stars; // Retourne le tableau d'étoiles.
   };
 
+
   return ( // Ce que le composant PageProduct va afficher.
     <main className="logement-main"> {/* Conteneur principal de la page. */}
-      <Slideshow images={logement.pictures} /> {/* Affiche le carrousel d'images du logement. */}
 
+    {/* PARTIE CARROUSEL D'IMAGES (SLIDESHOW)*/}
+      <Slideshow images={logement.pictures} /> {/* Affiche le carrousel d'images du logement. */}
       <section className="logement-info"> {/* Section principale des informations du logement. */}
+
+        {/* TITRE, LOCALISATION ET TAGS */ }
         <div className="logement-title-location-tags"> {/* Conteneur pour le titre, la localisation et les tags. */}
           <h1 className="logement-title">{logement.title}</h1> {/* Affiche le titre du logement. */}
           <p className="logement-location">{logement.location}</p> {/* Affiche la localisation du logement. */}
+
+          {/* ----- RENDU DES TAGS ----- */}
           <div className="logement-tags"> {/* Conteneur pour les tags. */}
             {logement.tags.map((tag, index) => ( // Parcourt les tags du logement.
               <span key={index} className="logement-tag"> {/* Affiche chaque tag comme une balise. */}
@@ -57,6 +68,8 @@ function PageProduct() { // Définit le composant de la page de produit (détail
             ))}
           </div>
         </div>
+
+                {/* PARTIE HÔTE ET NOTATION */}
 
         <div className="logement-host-rating"> {/* Conteneur pour les informations de l'hôte et la notation. */}
           <div className="host-info"> {/* Conteneur pour les informations de l'hôte. */}
@@ -69,10 +82,16 @@ function PageProduct() { // Définit le composant de la page de produit (détail
         </div>
       </section>
 
+       {/* PARTIE ACCORDÉONS (COLLAPSES) */}
+
       <section className="logement-collapses"> {/* Section des accordéons (description et équipements). */}
+
+        {/* ----- ACCORDÉON DESCRIPTION ----- */}
         <div className="logement-collapse-item"> {/* Conteneur pour l'accordéon de description. */}
           <Collapse title="Description" content={logement.description} /> {/* Affiche l'accordéon "Description". */}
         </div>
+
+        {/* ----- ACCORDÉON ÉQUIPEMENTS ----- */}
         <div className="logement-collapse-item"> {/* Conteneur pour l'accordéon des équipements. */}
           <Collapse title="Équipements" content={ // Affiche l'accordéon "Équipements".
             <ul> {/* Crée une liste non ordonnée pour les équipements. */}

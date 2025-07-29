@@ -2,7 +2,6 @@ import React from 'react';  // Importation de React pour créer des composants
 import './Home.css'; // Import du CSS
 
 
-
 // Importation des composants et éléments nécessaires
 import Banner from '../../Components/Banner/Banner'; 
 import Card from '../../Components/Card/Card';
@@ -22,8 +21,8 @@ function Home() { // Définit le composant de la page d'accueil.
         {/* Parcourt les données de chaque logement pour créer une Card. */}
         {logementsData.map(logement => (
           <Card // Affiche un composant Card pour chaque logement.
-            key={logement.id} // Clé unique pour chaque carte (obligatoire pour les listes React).
-            id={logement.id} // Passe l'ID du logement à la carte.
+            key={logement.id} // Pour React : aide à gérer la liste efficacement
+            id={logement.id} // Pour la Card : la prop utilisée pour créer le lien (ex: /logement/ID)
             title={logement.title} // Passe le titre du logement à la carte.
             imageUrl={logement.cover} // Passe l'image de couverture du logement à la carte.
           />

@@ -11,4 +11,4 @@ function Card({ id, title, imageUrl }) { // Création du composant Card
   );
 }
 
-export default Card; // Rend Card disponible ailleurs.
+export default Card; // Exporte le composant Card

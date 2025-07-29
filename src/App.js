@@ -1,5 +1,3 @@
-// src/App.js (Le fichier principal de routage)
-
 import React from 'react';  // Importation de React pour créer des composants
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Importation outil de routage 
 // - Router : Rend votre application capable de changer d'URL.
