@@ -1,0 +1,17 @@
+.rating {
+    display: flex;
+    gap: 5px; /* Espace entre les étoiles */
+}
+
+.star-icon {
+    width: 30px;
+    height: 30px;
+    /* Les filtres pour la couleur ne sont plus nécessaires ici car l'image SVG est déjà la bonne */
+}
+
+@media (max-width: 768px) {
+    .star-icon {
+        width: 15px;
+        height: 15px;
+    }
+}

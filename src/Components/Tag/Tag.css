@@ -1,0 +1,15 @@
+.logement-tag {
+    background-color: #FF6060;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .logement-tag {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+}

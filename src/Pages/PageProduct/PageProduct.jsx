@@ -4,9 +4,8 @@ import logementsData from '../../Logements/logements.json'; // Importe les donn�
 
 import Slideshow from '../../Components/Slideshow/Slideshow'; // Importe le composant Slideshow pour le carrousel d'images.
 import Collapse from '../../Components/Collapse/Collapse'; // Importe le composant Collapse pour les sections déroulantes.
-
-import starActive from '../../Images/star-solid.svg'; // Importe l'image SVG de l l'étoile pleine.
-import starInactive from '../../Images/star-empty.svg'; // Importe l'image SVG de l'étoile vide.
+import Tag from '../../Components/Tag/Tag'; // Importe le nouveau composant Tag
+import StarRating from '../../Components/StarRating/StarRating';
 
 import './PageProduct.css'; // Importe le fichier CSS spécifique à cette page.
 
@@ -29,22 +28,6 @@ function PageProduct() { // Définit le composant de la page de produit (détail
     return null; // Le composant ne rend rien pour le moment.
   }
 
-  // NOTATION AVEC ETOILES
-
-  const renderStars = (rating) => { // Définit une fonction pour générer les étoiles en fonction d'une note.
-    const stars = []; // Crée un tableau vide pour stocker les éléments étoile.
-    for (let i = 0; i < 5; i++) { // Boucle 5 fois pour créer 5 étoiles.
-      stars.push( // Ajoute une étoile au tableau.
-        <img // Crée un élément image.
-          key={i} // Clé unique pour chaque étoile dans la liste (obligatoire pour React).
-          src={i < rating ? starActive : starInactive} // Choisit l'image d'étoile pleine ou vide selon la note.
-          alt={i < rating ? 'Étoile pleine' : 'Étoile vide'} // Texte alternatif pour l'image.
-          className="star-icon" // Applique une classe CSS pour le style.
-        />
-      );
-    }
-    return stars; // Retourne le tableau d'étoiles.
-  };
 
 
   return ( // Ce que le composant PageProduct va afficher.
@@ -59,12 +42,10 @@ function PageProduct() { // Définit le composant de la page de produit (détail
           <h1 className="logement-title">{logement.title}</h1> {/* Affiche le titre du logement. */}
           <p className="logement-location">{logement.location}</p> {/* Affiche la localisation du logement. */}
 
-          {/* ----- RENDU DES TAGS ----- */}
-          <div className="logement-tags"> {/* Conteneur pour les tags. */}
-            {logement.tags.map((tag, index) => ( // Parcourt les tags du logement.
-              <span key={index} className="logement-tag"> {/* Affiche chaque tag comme une balise. */}
-                {tag} {/* Le texte du tag. */}
-              </span>
+
+          <div className="logement-tags">
+            {logement.tags.map((tag, index) => (
+              <Tag key={index} text={tag} />
             ))}
           </div>
         </div>
@@ -76,9 +57,7 @@ function PageProduct() { // Définit le composant de la page de produit (détail
             <p className="host-name">{logement.host.name.replace(' ', '\n')}</p> {/* Affiche le nom de l'hôte, avec un retour à la ligne si espace. */}
             <img src={logement.host.picture} alt={logement.host.name} className="host-picture" /> {/* Affiche la photo de l'hôte. */}
           </div>
-          <div className="rating"> {/* Conteneur pour les étoiles de notation. */}
-            {renderStars(parseInt(logement.rating))} {/* Appelle la fonction pour afficher les étoiles, convertissant la note en nombre. */}
-          </div>
+          <StarRating rating={parseInt(logement.rating)} />
         </div>
       </section>
 
